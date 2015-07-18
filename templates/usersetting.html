@@ -2,14 +2,21 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Sign In</h1>
-  <form action="" method="post" name="login">
+  <h1>User Settings</h1>
+  <form action="" method="post" name="usersetting">
       {{ form.hidden_tag() }}
       <p>
-          Please enter your OpenID:<br>
-          {{ form.openid(size=80) }}<br>
+          Please enter your Organization:<br>
+          {{ form.org_id(size=80) }}<br>
       </p>
-      <p>{{ form.remember_me }} Remember Me</p>
-      <p><input type="submit" value="Sign In"></p>
+      <p>
+          Please enter your Email id:<br>
+          {{ form.email_id(size=80) }}<br>
+      </p>
+      <p>
+          Please enter your Phone Number:<br>
+          {{ form.cell_id }}<br>
+      </p>
+      <p><input type="submit" value="Save"></p>
   </form>
 {% endblock %}
