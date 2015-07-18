@@ -1,7 +1,7 @@
 from flask import render_template, flash, redirect
 from app import app
 from .usersetting import SettingForm
-
+from app import db, models
 
 @app.route('/')
 @app.route('/index')
@@ -68,6 +68,31 @@ def facebook_authorized(resp):
 
     session['logged_in'] = True
     session['facebook_token'] = (resp['access_token'], '')
+
+    user_id = ''
+    user_name = ''
+    #Get the facebook email 
+    data = facebook.get('/me').data
+    if 'id' in data and 'name' in data:
+      user_id = data['id']
+      user_name = data['name']
+
+    #if a user with this email already exists, then don't do anything 
+    #else add him to the database with the facebook email id
+
+    users = models.User.query.all()
+
+    max_id = -1
+    for user in users:
+      if (user.id > max_id): max_id = user.id  
+      if (user.fb_email == user_id):
+        #means that we have a thing 
+        return redirect(next_url)
+        
+    new_user = models.User(id=max_id+1)
+    new_user.fb_email = user_id
+    db.session.add(new_user)
+    db.session.commit()
 
     return redirect(next_url)
 
