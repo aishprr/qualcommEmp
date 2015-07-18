@@ -17,12 +17,13 @@ from migrate.versioning import api
 from config import SQLALCHEMY_DATABASE_URI
 from config import SQLALCHEMY_MIGRATE_REPO
 from app import db
+import flask
 import os.path
 
 # get some context
 app = flask.Flask("app")
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite://'
-app.register_blueprint(api)
+#app.register_blueprint(api)
 db.init_app(app)
 
 with app.app_context():
