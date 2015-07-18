@@ -14,7 +14,8 @@ def index():
       passed_var.append({'event_name': event.event_name,
                          'event_date': event.event_date,
                          'event_location' : event.event_location,
-                         'event_hashtags' : event.event_hashtags})  
+                         'event_hashtags' : event.event_hashtags,
+                         'event_id' : event.id})  
 
 
     return render_template('index.html',
@@ -137,10 +138,33 @@ def logout():
     pop_login_session()
     return redirect(url_for('index'))
 
-'''
-@app.route('/')
-def index():
-    return render_template('index.html',
-                           title='Home',
+@app.route("/conference/<event_id>")
+def conference(event_id):
+    events = models.Event.query.all()
+    event_name = ''
+    for event in events: 
+      if(event.event_id == event_id):
+        users = eval(event.user_list)
+        event_name = event.event_name
+        break
+
+    queried_users = models.User.query.all()
+    
+    user_var = list()
+    
+    for user in queried_users: 
+      if(user.id in users):
+        user_var.append({ 'first_name': user.first_name,
+                          'last_name': user.last_name,
+                          'org': user.org_id,
+                          'email': user.email_id,
+                          'cell': user.cell_id
+                        })
+
+    return render_template('conference.html',
+                           title='Conference',
+                           conf_name=event_name,
+                           users=users,
                            )
-'''
+
+    
