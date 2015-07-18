@@ -11,10 +11,10 @@ def index():
     events = models.Event.query.all()
     passed_var = list()
     for event in events:
-      passed_var.append({'event_name'= event.event_name,
-                         'event_date'= event.event_date,
-                         'event_location' = event.event_location,
-                         'event_hashtags' = event.event_hashtags})  
+      passed_var.append({'event_name': event.event_name,
+                         'event_date': event.event_date,
+                         'event_location' : event.event_location,
+                         'event_hashtags' : event.event_hashtags})  
 
 
     return render_template('index.html',
