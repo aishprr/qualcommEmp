@@ -12,6 +12,10 @@
   <link href="Style.css" rel="stylesheet" type="text/css">
 
   <style>
+    h4 {
+      text-align: center;
+    }
+
     a:hover {
       text-decoration: none;
     }
@@ -49,28 +53,11 @@
     <h3 class="text-muted"><a class="title" href="/index">NCWIT Community Finder</a></h3>
   </div>
 
-  {% block content %}
-  <h1>User Settings</h1>
-  <form action="" method="post" name="usersetting">
-    {{ form.hidden_tag() }}
-    <h5>Organization:</h5>
-    <p>
-      {{ form.org_id(size=80) }}<br>
-    </p>
-
-    <h5>Email ID:</h5>
-    <p>
-      {{ form.email_id(size=80) }}<br>
-    </p>
-    <h5>Phone Number:</h5>
-    <p>
-      {{ form.cell_id }}<br>
-    </p>
-    <p><input type="submit" value="Save"></p>
-  </form>
-  {% endblock %}
-
-  <h4>Upcoming Conferences: </h4>
+  <h2>Members also attending: </h2>
+  <ul>
+    {% for person in users %}
+    <li><h5>{{ person }}</h5></li>
+  </ul>
 
   <footer class="footer">
     <p>&copy; NCWIT 2015</p>

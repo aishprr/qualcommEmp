@@ -167,4 +167,9 @@ def conference(event_id):
                            users=users,
                            )
 
+
+@app.route("/open")
+def open():
+  return render_template('open.html')
+
     

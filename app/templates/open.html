@@ -49,29 +49,30 @@
     <h3 class="text-muted"><a class="title" href="/index">NCWIT Community Finder</a></h3>
   </div>
 
-  {% block content %}
-  <h1>User Settings</h1>
-  <form action="" method="post" name="usersetting">
-    {{ form.hidden_tag() }}
-    <h5>Organization:</h5>
-    <p>
-      {{ form.org_id(size=80) }}<br>
-    </p>
+  <br>
+  <h3>Register Conference: </h3>
+  <h4>Type of Event: </h4>
+  <select>
+    <option value="conference">Conference</option>
+    <option value="internship">Internship</option>
+    <option value="event">Other Tech Event</option>
+  </select>
 
-    <h5>Email ID:</h5>
-    <p>
-      {{ form.email_id(size=80) }}<br>
-    </p>
-    <h5>Phone Number:</h5>
-    <p>
-      {{ form.cell_id }}<br>
-    </p>
-    <p><input type="submit" value="Save"></p>
+  <form>
+    <h4>Title of Conference: </h4>
+    <input type="text">
+    <h4>City: </h4>
+    <input type="text">
+    <h4>State: </h4>
+    <select>
+      <option value="conference">AL</option>
+    </select>
+    <h4>Sponsor: </h4>
+    <input type="text">
   </form>
-  {% endblock %}
-
-  <h4>Upcoming Conferences: </h4>
-
+  <br>
+  <button>Submit</button>
+  <br>
   <footer class="footer">
     <p>&copy; NCWIT 2015</p>
   </footer>
