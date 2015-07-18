@@ -7,19 +7,34 @@ from app import db, models
 
 
 #db.session.commit()
-
 '''
 user_id = "aish_premrenu@yahoo.co.in"
+
 users = models.User.query.all()
 
 print users
 
-max_id = -1
 for user in users:
-    if (user.id > max_id): max_id = user.id  
-    if (user.fb_email == user_id):
-        #means that we have a thing 
-    	print('FOUND IT');
+    print(user.id)
+    print(user.first_name)
+    print(user.last_name)
+    print(user.fb_email)
+    print(user.org_id)
+    print(user.email_id)
+    print(user.cell_id)
+    if(user!=0 or user!=1):
+    	user.first_name = input("first_name")
+    	user.last_name = input("last_name")
+    	user.fb_email = input("fb_email")
+    	user.org_id = input("org_id")
+    	user.email_id = input("email_id")
+    	user.cell_id = int(input("cell_id"))
+    
+    #db.session.update(user)
+    db.session.commit();
+        
+print(users)
+
 
 new_user = models.User(id=max_id+1)
 new_user.fb_email = user_id
@@ -33,8 +48,7 @@ for user in users:
     print(user.first_name)
 
 print(users)
-'''
-'''
+
 db.create_all()
 
 u0 = models.Event(id=1)
@@ -75,4 +89,40 @@ db.session.add(u0)
 db.session.commit()
 events = models.Event.query.all()
 print(events)
+events = models.Event.query.all()
+for event in events: 
+	print(event.event_name)
+
+print(events)
+
+'''
+users = models.User.query.all()
+for user in users:
+	
+    print(user.id)
+    print(user.first_name)
+    print(user.last_name)
+    print(user.fb_email)
+    print(user.org_id)
+    print(user.email_id)
+    print(user.cell_id)
+    '''
+	if(user.id == 6):
+
+		(user.first_name = "wwwewe"
+		user.last_name = "ewjeb"
+		user.fb_email = "l23h23@gmail.com"
+		user.org_id ="WinECE, UC Davis"
+		user.email_id = "sdmnsld@gmail.com"
+		user.cell_id = 2392929111
+    
+		db.session.commit();
+	'''
+'''
+events = models.Event.query.all()
+for event in events:
+    if(event.id == 2):
+        event.user_list = "[0,5,6,2]"
+        db.session.commit()
+
 '''
