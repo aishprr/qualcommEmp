@@ -2,6 +2,8 @@ from flask import render_template, flash, redirect
 from app import app
 from .usersetting import SettingForm
 from app import db, models
+from flask_googlemaps import Map
+from geopy.geocoders import Nominatim
 
 @app.route('/')
 @app.route('/index')
@@ -23,6 +25,29 @@ def setting():
                            form=form,
                            )
 
+@app.route('/map')
+def map():
+    geolocator = Nominatim()
+    location = geolocator.geocode("175 5th Avenue NYC")
+    # creating a map in the view
+    mymap = Map(
+                identifier="view-side",
+                lat=location.latitude,
+                lng=-location.longitude,
+                markers=[(37.4419, -122.1419)]
+                )
+    sndmap = Map(
+                 identifier="sndmap",
+                 lat=37.4419,
+                 lng=-122.1419,
+                 markers={'http://maps.google.com/mapfiles/ms/icons/green-dot.png':[(37.4419, -122.1419)],
+                 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png':[(37.4300, -122.1400)]}
+                 )
+    return render_template('map.html', mymap=mymap, sndmap=sndmap)
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
 
 #----------------------------------------
 # facebook authentication
