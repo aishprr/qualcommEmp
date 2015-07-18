@@ -94,14 +94,15 @@ def facebook_authorized(resp):
     session['logged_in'] = True
     session['facebook_token'] = (resp['access_token'], '')
 
+      
     user_id = ''
     user_name = ''
     #Get the facebook email 
     data = facebook.get('/me').data
-    if 'id' in data and 'name' in data:
-      user_id = data['id']
+    if 'email' in data and 'name' in data:
+      user_id = data['email']
       user_name = data['name']
-
+      
     #if a user with this email already exists, then don't do anything 
     #else add him to the database with the facebook email id
 

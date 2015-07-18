@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        {% if not session.logged_in %}
+        <li><a href="/facebook_login">Login or Signup</a></li>
+        {% else %}
+        <li><a href="/setting">User Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <h3 class="text-muted">Python Flask App</h3>
+  </div>
+</div>
+</body>
+</html>
