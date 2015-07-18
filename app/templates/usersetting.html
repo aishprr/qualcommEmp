@@ -6,6 +6,14 @@
   <form action="" method="post" name="usersetting">
       {{ form.hidden_tag() }}
       <p>
+          Please enter your First Name:<br>
+          {{ form.first_name(size=80) }}<br>
+      </p>
+      <p>
+          Please enter your Last Name:<br>
+          {{ form.last_name(size=80) }}<br>
+      </p>
+      <p>
           Please enter your Organization:<br>
           {{ form.org_id(size=80) }}<br>
       </p>

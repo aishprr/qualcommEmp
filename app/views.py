@@ -14,10 +14,10 @@ def index():
 @app.route('/setting', methods=['GET', 'POST'])
 def setting():
     form = SettingForm()
-    if form.validate_on_submit():
-#        flash('Login requested for orgID="%s", cellID=%s,emailID=%s,fb_ID=%s' %
-#              (form.org_id.data, str(form.remember_me.data)))
-        return redirect('/index')
+    form.save()
+    #    flash('Login requested for OpenID="%s", remember_me=%s' %
+    #          (form.openid.data, str(form.remember_me.data)))
+    #    return redirect('/index')
     return render_template('usersetting.html',
                            title='Setting',
                            form=form,
@@ -88,7 +88,7 @@ def facebook_authorized(resp):
       if (user.fb_email == user_id):
         #means that we have a thing 
         return redirect(next_url)
-        
+
     new_user = models.User(id=max_id+1)
     new_user.fb_email = user_id
     db.session.add(new_user)
