@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>NCWIT Community Finder</title>
+
+
+  <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
+
+  <link href="Style.css" rel="stylesheet" type="text/css">
+
+  <style>
+    h4 {
+      text-align: center;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    ul, li {
+      list-style-type: none;
+    }
+
+    .prelogin {
+      text-align: center;
+    }
+
+    .title {
+      text-decoration: none;
+      color: inherit;
+    }
+
+  </style>
+
+</head>
+
+<body>
+<div class="container">
+  <div class="header">
+    <nav>
+      <ul class="nav nav-pills pull-right">
+        {% if not session.logged_in %}
+        <li><a href="/facebook_login">Login or Signup</a></li>
+        {% else %}
+        <li><a href="/setting">User Settings</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+    <h3 class="text-muted"><a class="title" href="/index">NCWIT Community Finder</a></h3>
+  </div>
+
+  
+
+  <footer class="footer">
+    <p>&copy; NCWIT 2015</p>
+  </footer>
+
+</div>
+</body>
+</html>
