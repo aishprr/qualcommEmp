@@ -8,8 +8,18 @@ from geopy.geocoders import Nominatim
 @app.route('/')
 @app.route('/index')
 def index():
+    events = models.Event.query.all()
+    passed_var = list()
+    for event in events:
+      passed_var.append({'event_name'= event.event_name,
+                         'event_date'= event.event_date,
+                         'event_location' = event.event_location,
+                         'event_hashtags' = event.event_hashtags})  
+
+
     return render_template('index.html',
                            title='Home',
+                           passed_var
                            )
 
 
@@ -126,3 +136,9 @@ def facebook_authorized(resp):
 def logout():
     pop_login_session()
     return redirect(url_for('index'))
+
+@app.route('/')
+def index():
+    return render_template('index.html',
+                           title='Home',
+                           )
