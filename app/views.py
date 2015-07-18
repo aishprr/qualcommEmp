@@ -19,7 +19,7 @@ def index():
 
     return render_template('index.html',
                            title='Home',
-                           passed_var
+                           passed_var=passed_var
                            )
 
 
@@ -137,8 +137,10 @@ def logout():
     pop_login_session()
     return redirect(url_for('index'))
 
+'''
 @app.route('/')
 def index():
     return render_template('index.html',
                            title='Home',
                            )
+'''

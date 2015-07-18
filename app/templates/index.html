@@ -3,7 +3,7 @@
  
 <head>
     <title>Python Flask Bucket List App</title>
- 
+    
  
     <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
  
@@ -17,7 +17,7 @@
     {% if not session.logged_in %} 
     <li><a href="/facebook_login">Login or Signup</a></li>
     {% else %}
-    
+
     <li><a href="/setting">User Settings</a></li>s
     <li><a href="/logout">Logout</a></li>
     {% endif %}
