@@ -4,6 +4,8 @@ from app import db
 
 class User(db.Model):
     id = db.Column((db.Integer), primary_key=True)
+    first_name = db.Column(db.String(80), index=True, unique=False)
+    last_name = db.Column(db.String(80), index=True, unique=False)
     fb_email = db.Column(db.String(80), index=True, unique=True)
     org_id = db.Column(db.String(80), index=True, unique=False)
     email_id = db.Column(db.String(80), index=True, unique=True)
@@ -11,12 +13,7 @@ class User(db.Model):
 
     def __init__(self, id):
         self.id = id
-        #self.fb_email = fb_email
-        #self.org_id = org_id
-        #self.email_id = email_id
-        #self.cell_id = cell_id
-
-
+        
     def __repr__(self):
         return '<User %r>' % (self.id)
 
@@ -25,4 +22,5 @@ class Event(db.Model):
     event_name = db.Column(db.String(120), index=True, unique=False)
     event_date = db.Column(db.String(80), index=True, unique=False)
     event_location = db.Column(db.String(120), index=True, unique=False)
+    event_zipcode = db.Column((db.Integer), index=True, unique=False)
     event_hashtags = db.Column(db.String(120), index=True, unique=True)

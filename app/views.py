@@ -1,7 +1,9 @@
 from flask import render_template, flash, redirect
 from app import app
 from .usersetting import SettingForm
-
+from app import db, models
+from flask_googlemaps import Map
+from geopy.geocoders import Nominatim
 
 @app.route('/')
 @app.route('/index')
@@ -14,15 +16,38 @@ def index():
 @app.route('/setting', methods=['GET', 'POST'])
 def setting():
     form = SettingForm()
-    if form.validate_on_submit():
-#        flash('Login requested for orgID="%s", cellID=%s,emailID=%s,fb_ID=%s' %
-#              (form.org_id.data, str(form.remember_me.data)))
-        return redirect('/index')
+    form.save()
+    #    flash('Login requested for OpenID="%s", remember_me=%s' %
+    #          (form.openid.data, str(form.remember_me.data)))
+    #    return redirect('/index')
     return render_template('usersetting.html',
                            title='Setting',
                            form=form,
                            )
 
+@app.route('/map')
+def map():
+    geolocator = Nominatim()
+    location = geolocator.geocode("175 5th Avenue NYC")
+    # creating a map in the view
+    mymap = Map(
+                identifier="view-side",
+                lat=location.latitude,
+                lng=-location.longitude,
+                markers=[(37.4419, -122.1419)]
+                )
+    sndmap = Map(
+                 identifier="sndmap",
+                 lat=37.4419,
+                 lng=-122.1419,
+                 markers={'http://maps.google.com/mapfiles/ms/icons/green-dot.png':[(37.4419, -122.1419)],
+                 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png':[(37.4300, -122.1400)]}
+                 )
+    return render_template('map.html', mymap=mymap, sndmap=sndmap)
+
+@app.route('/stats')
+def stats():
+    return render_template('stats.html')
 
 #----------------------------------------
 # facebook authentication
@@ -68,6 +93,31 @@ def facebook_authorized(resp):
 
     session['logged_in'] = True
     session['facebook_token'] = (resp['access_token'], '')
+
+    user_id = ''
+    user_name = ''
+    #Get the facebook email 
+    data = facebook.get('/me').data
+    if 'id' in data and 'name' in data:
+      user_id = data['id']
+      user_name = data['name']
+
+    #if a user with this email already exists, then don't do anything 
+    #else add him to the database with the facebook email id
+
+    users = models.User.query.all()
+
+    max_id = -1
+    for user in users:
+      if (user.id > max_id): max_id = user.id  
+      if (user.fb_email == user_id):
+        #means that we have a thing 
+        return redirect(next_url)
+
+    new_user = models.User(id=max_id+1)
+    new_user.fb_email = user_id
+    db.session.add(new_user)
+    db.session.commit()
 
     return redirect(next_url)
 
