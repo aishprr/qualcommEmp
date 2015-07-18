@@ -94,19 +94,20 @@ for event in events:
 	print(event.event_name)
 
 print(events)
-
 '''
+
 users = models.User.query.all()
+
 for user in users:
-	
-    print(user.id)
+	print(user.id)
     print(user.first_name)
     print(user.last_name)
     print(user.fb_email)
     print(user.org_id)
     print(user.email_id)
     print(user.cell_id)
-    '''
+	
+	'''
 	if(user.id == 6):
 
 		(user.first_name = "wwwewe"
@@ -117,12 +118,8 @@ for user in users:
 		user.cell_id = 2392929111
     
 		db.session.commit();
-	'''
-'''
+
 events = models.Event.query.all()
 for event in events:
-    if(event.id == 2):
-        event.user_list = "[0,5,6,2]"
-        db.session.commit()
-
+    
 '''

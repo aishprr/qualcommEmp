@@ -143,7 +143,7 @@ def conference(event_id):
     events = models.Event.query.all()
     event_name = ''
     for event in events: 
-      if(event.event_id == event_id):
+      if(event.id == event_id):
         users = eval(event.user_list)
         event_name = event.event_name
         break
