@@ -11,6 +11,29 @@
 
   <link href="Style.css" rel="stylesheet" type="text/css">
 
+  <style>
+    h4 {
+      text-align: center;
+    }
+
+    a:hover {
+      text-decoration: none;
+    }
+
+    ul, li {
+      list-style-type: none;
+    }
+
+    .prelogin {
+      text-align: center;
+    }
+
+    .title {
+      text-decoration: none;
+      color: inherit;
+    }
+
+  </style>
 
 </head>
 
@@ -27,7 +50,7 @@
         {% endif %}
       </ul>
     </nav>
-    <h3 class="text-muted"><a href="/index">NCWIT Community Finder</a></h3>
+    <h3 class="text-muted"><a class="title" href="/index">NCWIT Community Finder</a></h3>
   </div>
 
   {% block content %}
