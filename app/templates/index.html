@@ -25,6 +25,13 @@
       color: #BFBFDF;
     }
 
+    img {
+      border-radius: 25px;
+      display: block;
+      margin-left: auto;
+      margin-right: auto
+    }
+
     .prelogin {
       text-align: center;
     }
@@ -51,7 +58,7 @@
 
 
   {% if not session.logged_in %}
-  <img src="https://www.ncwit.org/sites/default/files/styles/large/public/image_type/heroesbanner.jpg?itok=cPpEAro9" alt="ncwit_faces">
+  <img src="https://www.ncwit.org/sites/default/files/styles/large/public/image_type/heroesbanner.jpg?itok=cPpEAro9" alt="ncwit_faces" align="middle" >
   <h1 class="prelogin">Welcome to NCWIT Community Finder</h1>
   <h3>Find your friends.</h3>
   {% else %}
@@ -59,31 +66,33 @@
   <h4>What have you been up to? Register your conference/internship/event <a href="#">here</a>!</h4>
 
 
-  <div class="jumbotron">
-    <h1>Bucket List App</h1>
-    <p class="lead"></p>
-    <p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>
-    </p>
-  </div>
+  <!--<div class="jumbotron">-->
+    <!--<h1>Bucket List App</h1>-->
+    <!--<p class="lead"></p>-->
+    <!--<p><a class="btn btn-lg btn-success" href="showSignUp" role="button">Sign up today</a>-->
+    <!--</p>-->
+  <!--</div>-->
+
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/02/NCWITSquareLogo.png/440px-NCWITSquareLogo.png">
 
   <div>
     <h2>Upcoming Conferences</h2>
     <ul>
-      {% for thing in passed_var %}
-      <li class="list-unstyled"><h4>{{ thing['event_name'] }} &middot;  {{ thing['event_location'] }}</h4></li>
-      <p><b>{{ thing['event_date'] }}</b> Description </p>
-      {% endfor %}
-    </ul>
-
-      <!--<li  class="list-unstyled"><h4>Grace Hopper Celebration of Women in Computing &middot; Houston, TX</h4>-->
-      <!--<p><b>Oct 14th - 16th</b> This event is a series of conferences designed to bring the research and career interests of women in computing to the forefront. Presenters are leaders in their respective fields, representing industrial, academic and government communities. Leading researchers present their current work, while special sessions focus on the role of women in today’s technology fields, including computer science, information technology, research and engineering.</p>-->
-      <!--<h5 color="#EEEEE5">Sally Chen, Taylor Swift, and 5 of your friends are also going.</h5>-->
-      <!--</li>-->
-      <!--<li  class="list-unstyled"><h4>DevCon5 HTML5 & Mobile App Developer Conference &middot; New York City, NY</h4>-->
-        <!--<p><b>Jul 21th - 22th</b> Whether you are building hybrid mobile apps with HTML5 or developing IoS or Android apps, DevCon5 will show you how to leverage the most effective tools, frameworks and developer solutions to ensure the success of your project.</p>-->
-        <!--<h5>Alex Gomez is also going.</h5>-->
-      <!--</li>-->
+      <!--{% for thing in passed_var %}-->
+      <!--<li class="list-unstyled"><h4>{{ thing['event_name'] }} &middot;  {{ thing['event_location'] }}</h4></li>-->
+      <!--<p><b>{{ thing['event_date'] }}</b> Description </p>-->
+      <!--{% endfor %}-->
     <!--</ul>-->
+
+      <li  class="list-unstyled"><h4>Grace Hopper Celebration of Women in Computing &middot; Houston, TX</h4>
+      <p><b>Oct 14th - 16th</b> This event is a series of conferences designed to bring the research and career interests of women in computing to the forefront. Presenters are leaders in their respective fields, representing industrial, academic and government communities. Leading researchers present their current work, while special sessions focus on the role of women in today’s technology fields, including computer science, information technology, research and engineering.</p>
+      <h5 color="#EEEEE5">Sally Chen, Taylor Swift, and 5 of your friends are also going.</h5>
+      </li>
+      <li  class="list-unstyled"><h4>DevCon5 HTML5 & Mobile App Developer Conference &middot; New York City, NY</h4>
+        <p><b>Jul 21th - 22th</b> Whether you are building hybrid mobile apps with HTML5 or developing IoS or Android apps, DevCon5 will show you how to leverage the most effective tools, frameworks and developer solutions to ensure the success of your project.</p>
+        <h5>Alex Gomez is also going.</h5>
+      </li>
+    </ul>
   </div>
   {% endif %}
 
