@@ -19,3 +19,10 @@ class User(db.Model):
 
     def __repr__(self):
         return '<User %r>' % (self.id)
+
+class Event(db.Model):
+    id = db.Column((db.Integer), primary_key=True)
+    event_name = db.Column(db.String(120), index=True, unique=False)
+    event_date = db.Column(db.String(80), index=True, unique=False)
+    event_location = db.Column(db.String(120), index=True, unique=False)
+    event_hashtags = db.Column(db.String(120), index=True, unique=True)
