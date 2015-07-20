@@ -53,12 +53,17 @@
     <h3 class="text-muted"><a class="title" href="/index">NCWIT Community Finder</a></h3>
   </div>
 
-  <h2>Members also attending: </h2>
+  <h2> {{ conf_name }} </h2>
+  <h3>Members also attending: </h3>
   <ul>
     {% for person in users %}
-    <li><h5>{{ person }}</h5></li>
+    <li><h5>{{ person['first_name'] }} {{ person['last_name'] }} {{ person['cell'] }} | {{ person['email'] }}</h5></li>
+    {% endfor %}
   </ul>
 
+  <br>
+  <button>Join this Event</button>
+  <br>
   <footer class="footer">
     <p>&copy; NCWIT 2015</p>
   </footer>
